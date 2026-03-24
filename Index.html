@@ -1,16 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Test</title>
-</head>
-<body>
-  <h1>If you see this, HTML works ✅</h1>
-  <p>🐬 Dolphin test</p>
+<meta charset="UTF-8">
+<title>Vault Assist — Wave AI</title>
 
-  <button onclick="alert('JS works ✅')">
-    Click me
-  </button>
+<style>
+/* ================= BASE ================= */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0b4f6c, #021024 75%);
+}
+
+/* Abstract ocean motion */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 35%, rgba(0,180,255,0.18), transparent 45%),
+    radial-gradient(circle at 75% 60%, rgba(0,120,220,0.18), transparent 45%);
+  animation: drift 14s linear infinite;
+}
+@keyframes drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50px); }
+  100% { transform: translateX(0); }
+}
+
+/* ================= WAVE (SVG DOLPHIN) ================= */
+#wave {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  animation: swimX 8s ease-in-out infinite,
+             bobY 4s ease-in-out infinite;
+  transition: all 1s ease;
+  z-index: 10;
+}
+#wave svg {
+  filter: drop-shadow(0 0 14px rgba(0,200,255,0.6));
+}
+
+@keyframes swimX {
+  0%   { transform: translate(-50%,-50%) scaleX(1); }
+  50%  { transform: translate(-25%,-55%) scaleX(-1); }
+  100% { transform: translate(-50%,-50%) scaleX(1); }
+}
+@keyframes bobY {
+  0% { top: 58%; }
+  50% { top: 62%; }
+  100% { top: 58%; }
+}
+
+/* Corner AI mode */
+.corner {
+  top: 14px !important;
+  left: 14px !important;
+  transform: scale(0.4) !important;
+  animation: none !important;
+}
+
+/* ================= LOGIN ================= */
+#login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,150,255,0.6);
+  z-index: 20;
+}
+
+#login input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+#login button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #00aaff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= DASHBOARD ================= */
+#dashboard {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  padding: 80px 20px 20px 180px;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+
+.progress {
+  height: 18px;
+  background: #0b2d55;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress div {
+  height: 100%;
+  width: 67%;
+  background: #00aaff;
+}
+
+.pie {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00aaff 0% 55%,
+    #ffaa00 55% 75%,
+    #ff5555 75% 100%
+  );
+}
+
+#chat {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 260px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 10px;
+  display: none;
+}
+#chat input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- WAVE SVG DOLPHIN -->
+<div id="wave">
+<svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 40
+           C25 20, 55 20, 75 35
+           C85 20, 105 15, 110 25
+           C100 30, 95 40, 90 45
+           C75 60, 45 60, 25 50
+           C20 55, 10 60, 8 55
+           C12 48, 12 44, 10 40Z"
+        fill="#00c2ff"/>
+  <circle cx="70" cy="34" r="2" fill="#021024"/>
+</svg>
+</div>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>Wave AI</h2>
+  <p>Hi, I’m Wave. Log in and we can start our day.</p>
+
+  <input id="name" placeholder="Full Name">
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button onclick="login()">Sign In</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <h1>Employee Dashboard</h1>
+
+  <div class="card">
+    <h3>Loan Processing</h3>
+    <div class="progress"><div></div></div>
+    <p>67% of loans processed today</p>
+  </div>
+
+  <div class="card">
+    <h3>Workplace Mood</h3>
+    <div class="pie"></div>
+    <p>Calm • Focused • Slight Stress</p>
+  </div>
+
+  <div class="card">
+    <h3>Why You’re Feeling This Way</h3>
+    <p>
+      Wave detected high loan volume and deadline pressure.
+      Stress is moderate but productivity remains strong.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Loan Requests</h3>
+    <p>• Auto — $9,200</p>
+    <p>• Business — $14,500</p>
+    <p>• Personal — $4,800</p>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div id="chat">
+  <strong>Ask Wave</strong>
+  <input placeholder="Ask Wave…" onkeydown="ask(event)">
+</div>
+
+<script>
+function speak(msg) {
+  const u = new SpeechSynthesisUtterance(msg);
+  u.rate = 1;
+  u.pitch = 1.2;
+  speechSynthesis.speak(u);
+}
+
+window.onload = () => {
+  setTimeout(() => {
+    speak("Hi, I’m Wave. Log in and we can start our day.");
+  }, 600);
+};
+
+function login() {
+  const name = document.getElementById("name").value || "Employee";
+  speak("Welcome " + name + ". I am now monitoring today's activity.");
+
+  document.getElementById("login").style.display = "none";
+  document.getElementById("dashboard").style.opacity = "1";
+  document.getElementById("dashboard").style.pointerEvents = "auto";
+  document.getElementById("chat").style.display = "block";
+  document.getElementById("wave").classList.add("corner");
+}
+
+function ask(e) {
+  if (e.key === "Enter") {
+    const t = e.target.value.toLowerCase();
+    e.target.value = "";
+
+    let reply =
+      t.includes("stress") ? "Stress is moderate but controlled." :
+      t.includes("loan") ? "Loan risk levels are stable." :
+      "I am monitoring systems and supporting you.";
+
+    speak(reply);
+  }
+}
+</script>
+
 </body>
 </html>
 ``
