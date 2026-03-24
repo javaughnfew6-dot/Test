@@ -1,0 +1,81 @@
+<!-- ================= LOGIN PAGE ================= --><!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault Assist - Login</title>
+<style>
+body { font-family: Arial; background: #f4f9ff; margin:0; }
+.container { display:flex; height:100vh; justify-content:center; align-items:center; }
+.box { background:white; padding:30px; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.1); width:300px; text-align:center; }
+input { width:100%; padding:10px; margin:10px 0; border-radius:8px; border:1px solid #ccc; }
+button { width:100%; padding:10px; background:#0077cc; color:white; border:none; border-radius:8px; cursor:pointer; }
+.wave { font-size:40px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="box">
+    <div class="wave">🐬</div>
+    <h2>Vault Assist</h2>
+    <p>Wave AI welcomes you</p>
+    <input placeholder="Name">
+    <input placeholder="Email">
+    <input placeholder="Phone">
+    <input type="password" placeholder="Password">
+    <button onclick="location.href='#dashboard'">Enter Dashboard</button>
+  </div>
+</div>
+</body>
+</html><!-- ================= DASHBOARD ================= --><!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<style>
+body { margin:0; font-family:Arial; background:#eef6ff; }
+.sidebar { width:220px; height:100vh; background:#0077cc; color:white; position:fixed; padding:20px; }
+.sidebar h2 { color:white; }
+.sidebar p { cursor:pointer; }
+.main { margin-left:240px; padding:20px; }
+.card { background:white; padding:15px; border-radius:10px; margin-bottom:15px; }
+.progress { background:#ddd; border-radius:10px; overflow:hidden; }
+.progress-bar { height:20px; width:63%; background:#0077cc; }
+button { padding:5px 10px; margin:5px; }
+</style>
+</head>
+<body><div class="sidebar">
+  <h2>Vault Assist</h2>
+  <p>📊 Analytics</p>
+  <p>💰 Loans</p>
+  <p>🧠 Insights</p>
+  <p>⚠️ Reports</p>
+  <p>🤖 Wave AI</p>
+</div><div class="main">
+  <h1>Dashboard</h1>  <div class="card">
+    <h3>Total Loan Value: $12,000,000</h3>
+    <h4>Monthly Progress</h4>
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <p>63% Complete</p>
+  </div>  <div class="card">
+    <h3>Submit Loan</h3>
+    <input placeholder="Customer Name"><br>
+    <input placeholder="Email"><br>
+    <input placeholder="Phone"><br>
+    <input placeholder="Loan Amount"><br>
+    <input placeholder="Purpose"><br>
+    <button>Add Loan</button>
+  </div>  <div class="card">
+    <h3>Loan Requests</h3>
+    <p>John Doe - $5000 - Car</p>
+    <button>Accept</button>
+    <button>Decline</button>
+    <button>Pending</button>
+  </div>  <div class="card">
+    <h3>Workplace Insight</h3>
+    <button>Good</button>
+    <button>Neutral</button>
+    <button>Stressed</button>
+    <button>Report Issue</button>
+  </div></div></body>
+</html>
