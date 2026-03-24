@@ -2,115 +2,73 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vault Assist – Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault Assist – Login</title>
 
 <style>
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background: #eef6ff;
+  background: #f4f9ff;
+  margin: 0;
 }
 
-.sidebar {
-  width: 220px;
+.container {
+  display: flex;
   height: 100vh;
-  background: #0077cc;
-  color: white;
-  position: fixed;
-  padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.sidebar p {
-  cursor: pointer;
-  margin: 10px 0;
-}
-
-.main {
-  margin-left: 240px;
-  padding: 20px;
-}
-
-.card {
+.box {
   background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
 }
 
-.progress {
-  background: #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 20px;
-  width: 63%;
-  background: #0077cc;
+.wave {
+  font-size: 40px;
 }
 
 input {
   width: 100%;
-  padding: 8px;
-  margin: 6px 0;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 button {
-  padding: 5px 10px;
-  margin: 5px 0;
+  width: 100%;
+  padding: 10px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
+<div class="container">
+  <div class="box">
+    <div class="wave">🐬</div>
+    <h2>Vault Assist</h2>
+    <p>Wave AI welcomes you</p>
 
-<div class="sidebar">
-  <h2>Vault Assist</h2>
-  <p>📊 Analytics</p>
-  <p>💰 Loans</p>
-  <p>🧠 Insights</p>
-  <p>⚠️ Reports</p>
-  <p>🤖 Wave AI</p>
-</div>
+    <!-- GitHub Pages compatible navigation -->
+    <form action="dashboard.html">
+      <input type="text" placeholder="Employee Name" required>
+      <input type="email" placeholder="Work Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Enter Dashboard</button>
+    </form>
 
-<div class="main">
-  <h1>Employee Dashboard</h1>
-
-  <div class="card">
-    <h3>Total Loan Value: $12,000,000</h3>
-    <h4>Monthly Progress</h4>
-    <div class="progress">
-      <div class="progress-bar"></div>
-    </div>
-    <p>63% Complete</p>
-  </div>
-
-  <div class="card">
-    <h3>Submit Loan</h3>
-    <input placeholder="Customer Name">
-    <input placeholder="Email">
-    <input placeholder="Phone">
-    <input placeholder="Loan Amount">
-    <input placeholder="Purpose">
-    <button>Add Loan</button>
-  </div>
-
-  <div class="card">
-    <h3>Loan Requests</h3>
-    <p>John Doe – $5,000 – Car</p>
-    <button>Accept</button>
-    <button>Decline</button>
-    <button>Pending</button>
-  </div>
-
-  <div class="card">
-    <h3>Workplace Insight</h3>
-    <button>Good</button>
-    <button>Neutral</button>
-    <button>Stressed</button>
-    <button>Report Issue</button>
   </div>
 </div>
-
 </body>
 </html>
+``
